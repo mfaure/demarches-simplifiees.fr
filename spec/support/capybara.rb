@@ -22,7 +22,7 @@ Capybara.register_driver :headless_chrome do |app|
     chromeOptions: {
       args: ['disable-dev-shm-usage', 'disable-software-rasterizer', 'mute-audio', 'window-size=1440,900'],
       prefs: {
-        'intl.accept_languages' => 'fr,fr_FR'
+        'intl.accept_languages' => 'fr,fr-FR'
       }
     }
   )
