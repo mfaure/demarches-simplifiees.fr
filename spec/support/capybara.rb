@@ -14,9 +14,17 @@ Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument('--headless')
   options.add_argument('--window-size=1440,900')
+  options.add_argument('--lang=fr-FR')
+  options.add_option('prefs', { 'intl.accept_languages' => 'fr,fr-FR' })
+  options.add_preference('intl.accept_languages', 'fr,fr-FR')
 
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: ['disable-dev-shm-usage', 'disable-software-rasterizer', 'mute-audio', 'window-size=1440,900'] }
+    chromeOptions: {
+      args: ['disable-dev-shm-usage', 'disable-software-rasterizer', 'mute-audio', 'window-size=1440,900'],
+      prefs: {
+        'intl.accept_languages' => 'fr,fr_FR'
+      }
+    }
   )
 
   download_path = Capybara.save_path
