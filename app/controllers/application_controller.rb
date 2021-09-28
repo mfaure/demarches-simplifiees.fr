@@ -332,6 +332,8 @@ class ApplicationController < ActionController::Base
       extract_locale_from_accept_language_header ||
       I18n.default_locale
 
+    puts "ACCEPT-LANGUAGE: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    puts "USING LOCALE: '#{locale}'"
     I18n.with_locale(locale, &action)
   end
 
