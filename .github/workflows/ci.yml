@@ -58,6 +58,12 @@ jobs:
           - bin/rspec spec/features
 
     steps:
+      - name: Setup french locale for Chrome feature specs
+        run: |
+          locale -a
+          sudo apt-get install language-pack-fr
+          sudo dpkg-reconfigure locales
+
       - name: Checkout code
         uses: actions/checkout@v2
 
