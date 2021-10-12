@@ -67,7 +67,7 @@ class Procedure < ApplicationRecord
   attr_encrypted :api_particulier_token
 
   has_many :revisions, -> { order(:id) }, class_name: 'ProcedureRevision', inverse_of: :procedure
-  belongs_to :draft_revision, class_name: 'ProcedureRevision', optional: false
+  belongs_to :draft_revision, class_name: 'ProcedureRevision', optional: false, validate: false
   belongs_to :published_revision, class_name: 'ProcedureRevision', optional: true
   has_many :deleted_dossiers, dependent: :destroy
 
@@ -236,6 +236,7 @@ class Procedure < ApplicationRecord
   validates :description, presence: true, allow_blank: false, allow_nil: false
   validates :administrateurs, presence: true
   validates :lien_site_web, presence: true, if: :publiee?
+  validates_associated :draft_revision
   validate :validate_for_publication, on: :publication
   validate :check_juridique
   validates :path, presence: true, format: { with: /\A[a-z0-9_\-]{3,200}\z/ }, uniqueness: { scope: [:path, :closed_at, :hidden_at, :unpublished_at], case_sensitive: false }

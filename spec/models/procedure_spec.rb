@@ -278,6 +278,32 @@ describe Procedure do
 
       it_behaves_like 'duree de conservation'
     end
+
+    describe 'draft_revision' do
+      let(:repetition) { build(:type_de_champ_repetition, libelle: 'Enfants') }
+      let(:text_field) { build(:type_de_champ_text) }
+      let(:draft_procedure) { build(:procedure, types_de_champ: [repetition]) }
+
+      context 'on publish' do
+        it 'validates that no repetition type de champ is empty' do
+          draft_procedure.validate(:publication)
+          expect(draft_procedure.errors[:draft_revision]).to include("n'est pas valide")
+
+          text_field.revision = repetition.revision
+          text_field.order_place = repetition.types_de_champ.size
+          repetition.types_de_champ << text_field
+          draft_procedure.validate(:publication)
+          expect(draft_procedure.errors[:draft_revision]).not_to include("n'est pas valide")
+        end
+      end
+
+      context 'outside of publishing context' do
+        it 'doesn’t validate repetitions' do
+          draft_procedure.validate
+          expect(draft_procedure.errors[:draft_revision]).not_to include("n'est pas valide")
+        end
+      end
+    end
   end
 
   describe 'active' do

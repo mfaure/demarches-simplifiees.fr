@@ -11,13 +11,15 @@
 #
 class ProcedureRevisionTypeDeChamp < ApplicationRecord
   belongs_to :revision, class_name: 'ProcedureRevision'
-  belongs_to :type_de_champ
+  belongs_to :type_de_champ, validate: false
 
   scope :ordered, -> { order(:position) }
   scope :public_only, -> { joins(:type_de_champ).where(types_de_champ: { private: false }) }
   scope :private_only, -> { joins(:type_de_champ).where(types_de_champ: { private: true }) }
 
   before_create :set_position
+
+  validates_associated :type_de_champ
 
   def private?
     type_de_champ.private?
