@@ -21,6 +21,7 @@ module TPS
     Rails.autoloaders.main.ignore(Rails.root.join('lib/cops'))
     Rails.autoloaders.main.ignore(Rails.root.join('lib/linters'))
     Rails.autoloaders.main.ignore(Rails.root.join('lib/tasks/task_helper.rb'))
+    Rails.autoloaders.main.ignore(Rails.root.join('app/lib/core_ext'))
     config.paths.add Rails.root.join('spec/mailers/previews').to_s, eager_load: true
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
