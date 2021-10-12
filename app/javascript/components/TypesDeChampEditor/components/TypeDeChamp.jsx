@@ -11,6 +11,7 @@ import MoveButton from './MoveButton';
 import TypeDeChampCarteOption from './TypeDeChampCarteOption';
 import TypeDeChampCarteOptions from './TypeDeChampCarteOptions';
 import TypeDeChampDropDownOptions from './TypeDeChampDropDownOptions';
+import TypeDeChampDropDownOther from './TypeDeChampDropDownOther';
 import TypeDeChampPieceJustificative from './TypeDeChampPieceJustificative';
 import TypeDeChampRepetitionOptions from './TypeDeChampRepetitionOptions';
 import TypeDeChampTypesSelect from './TypeDeChampTypesSelect';
@@ -130,6 +131,10 @@ const TypeDeChamp = sortableElement(
             isVisible={isDropDown}
             handler={updateHandlers.drop_down_list_value}
           />
+          <TypeDeChampDropDownOther
+            isVisible={isDropDown}
+            handler={updateHandlers.drop_down_other}
+          />
           <TypeDeChampPieceJustificative
             isVisible={isFile}
             directUploadUrl={state.directUploadUrl}
@@ -234,6 +239,7 @@ const OPTIONS_FIELDS = {
 export const FIELDS = [
   'description',
   'drop_down_list_value',
+  'drop_down_other',
   'libelle',
   'mandatory',
   'parent_id',

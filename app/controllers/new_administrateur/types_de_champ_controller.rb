@@ -57,6 +57,7 @@ module NewAdministrateur
           ],
           methods: [
             :drop_down_list_value,
+            :drop_down_other,
             :piece_justificative_template_filename,
             :piece_justificative_template_url,
             :editable_options
@@ -73,6 +74,7 @@ module NewAdministrateur
         :parent_id,
         :private,
         :drop_down_list_value,
+        :drop_down_other,
         :piece_justificative_template,
         editable_options: [
           :cadastres,
@@ -94,6 +96,7 @@ module NewAdministrateur
         :description,
         :mandatory,
         :drop_down_list_value,
+        :drop_down_other,
         :piece_justificative_template,
         editable_options: [
           :cadastres,
