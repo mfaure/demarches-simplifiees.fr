@@ -49,6 +49,11 @@ module TPS
     # disable the check performed by Rails.
     config.action_dispatch.ip_spoofing_check = false
 
+    # Whether the full_message error format can be overridden by adding a `format` localized key
+    # at the attribute or model level in the locale files.
+    # This is false by default.
+    config.active_model.i18n_customize_full_message = true
+
     # Set the queue name for the mail delivery jobs to 'mailers'
     config.action_mailer.deliver_later_queue_name = :mailers
 

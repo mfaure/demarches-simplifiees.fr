@@ -1,0 +1,6 @@
+fr:
+  activerecord:
+    errors:
+      models:
+        procedure_revision_type_de_champ:
+          format: '%{message}'

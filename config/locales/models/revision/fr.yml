@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    attributes:
+      procedure_revision:
+        revision_types_de_champ: Champs
+        revision_types_de_champ_private: Annotations privées
+    errors:
+      models:
+        procedure_revision:
+          attributes:
+            revision_types_de_champ:
+              format: '%{attribute} : %{message}'
+            revision_types_de_champ_private:
+              format: '%{attribute} : %{message}'
