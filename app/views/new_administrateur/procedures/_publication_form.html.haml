@@ -36,8 +36,16 @@
     - if errors.details[:path]&.pluck(:error)&.include?(:taken) && procedure.path_available?(administrateur, procedure.path)
       - errors.delete(:path)
 
-    - options = { class: "button primary", id: 'publish' }
-    - if errors.details[:path].present?
-      - options[:disabled] = :disabled
+    - if errors.present?
+      .card.warning
+        .card-title La démarche comporte des erreurs.
+        %ul
+          - errors.each do |error|
+            %li= error.full_message
+        %p.mt-2 Veuillez résoudre ces erreurs avant de publier la démarche.
+
     .flex.justify-end
-      = submit_tag procedure_publish_label(procedure, :submit), options
+      - submit_options = { class: "button primary", id: 'publish' }
+      - if errors.present?
+        - submit_options[:disabled] = :disabled
+      = submit_tag procedure_publish_label(procedure, :submit), submit_options
