@@ -23,8 +23,8 @@ class ProcedureRevision < ApplicationRecord
   has_one :draft_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :draft_revision_id, dependent: :nullify, inverse_of: :draft_revision
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
 
-  validates_associated :revision_types_de_champ
-  validates_associated :revision_types_de_champ_private
+  validates_associated_bubbling :revision_types_de_champ
+  validates_associated_bubbling :revision_types_de_champ_private
 
   def build_champs
     types_de_champ.map(&:build_champ)

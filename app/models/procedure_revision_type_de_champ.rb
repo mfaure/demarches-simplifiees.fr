@@ -19,7 +19,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
 
   before_create :set_position
 
-  validates_associated :type_de_champ
+  validates_associated_bubbling :type_de_champ
 
   def private?
     type_de_champ.private?

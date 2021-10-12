@@ -287,20 +287,20 @@ describe Procedure do
       context 'on publish' do
         it 'validates that no repetition type de champ is empty' do
           draft_procedure.validate(:publication)
-          expect(draft_procedure.errors[:draft_revision]).to include("n'est pas valide")
+          expect(draft_procedure.errors[:draft_revision]).to include("Revision types de champ Type de champ le bloc répétable est vide")
 
           text_field.revision = repetition.revision
           text_field.order_place = repetition.types_de_champ.size
           repetition.types_de_champ << text_field
           draft_procedure.validate(:publication)
-          expect(draft_procedure.errors[:draft_revision]).not_to include("n'est pas valide")
+          expect(draft_procedure.errors[:draft_revision]).not_to include("Revision types de champ Type de champ le bloc répétable est vide")
         end
       end
 
       context 'outside of publishing context' do
         it 'doesn’t validate repetitions' do
           draft_procedure.validate
-          expect(draft_procedure.errors[:draft_revision]).not_to include("n'est pas valide")
+          expect(draft_procedure.errors[:draft_revision]).not_to include("Revision types de champ Type de champ le bloc répétable est vide")
         end
       end
     end
