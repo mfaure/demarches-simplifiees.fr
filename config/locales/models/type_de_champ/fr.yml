@@ -37,4 +37,9 @@ fr:
           iban: 'Iban'
           annuaire_education: 'Annuaire de l’éducation'
           cnaf: 'Données de la Caisse nationale des allocations familiales'
-
+    errors:
+      models:
+        type_de_champ:
+          attributes:
+            base:
+              empty_repetition: 'le bloc répétable est vide'

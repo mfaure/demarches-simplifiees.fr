@@ -103,6 +103,7 @@ class TypeDeChamp < ApplicationRecord
 
   validates :libelle, presence: true, allow_blank: false, allow_nil: false
   validates :type_champ, presence: true, allow_blank: false, allow_nil: false
+  validate :validate_repetition_not_empty, if: -> { revision&.procedure&.publiee? }
 
   before_validation :check_mandatory
   before_save :remove_piece_justificative_template, if: -> { type_champ_changed? }
@@ -352,6 +353,12 @@ class TypeDeChamp < ApplicationRecord
   end
 
   private
+
+  def validate_repetition_not_empty
+    if repetition? && types_de_champ.blank?
+      errors.add(:base, :empty_repetition)
+    end
+  end
 
   def parse_drop_down_list_value(value)
     value = value ? value.split("\r\n").map(&:strip).join("\r\n") : ''

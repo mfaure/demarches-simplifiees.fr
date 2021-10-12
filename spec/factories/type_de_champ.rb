@@ -17,15 +17,15 @@ FactoryBot.define do
       if evaluator.procedure
         type_de_champ.revision = evaluator.procedure.active_revision
 
-        build(:procedure_revision_type_de_champ,
+        r_tdc = attributes_for(:procedure_revision_type_de_champ,
           position: evaluator.position,
           revision: evaluator.procedure.active_revision,
           type_de_champ: type_de_champ)
 
         if type_de_champ.private?
-          type_de_champ.revision.types_de_champ_private << type_de_champ
+          type_de_champ.revision.revision_types_de_champ.build(r_tdc)
         else
-          type_de_champ.revision.types_de_champ << type_de_champ
+          type_de_champ.revision.revision_types_de_champ_private.build(r_tdc)
         end
       elsif evaluator.parent
         type_de_champ.revision = evaluator.parent.revision
